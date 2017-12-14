@@ -25,7 +25,7 @@ main = runCurses $ do
 	loop w newState
 	return ()
 	where
-		format name value = name ++ ": " ++ (show value)
+		format name value = (show value) ++ ": " ++ name
 		headtext state = map (uncurry format) $ reverse $ sortOn snd $ toList state
 		writeline n text = do
 			moveCursor n 0
