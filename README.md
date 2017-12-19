@@ -9,6 +9,8 @@ receive an infinite stream of data.
 
 We've solved that problem by just printing out the output of a `uniq -c` every 0.1 seconds.
 
+[![asciicast](https://asciinema.org/a/153477.png)](https://asciinema.org/a/153477)
+
 # Try it out!
 
 Wanna see it yourself?
