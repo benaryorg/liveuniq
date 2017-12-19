@@ -23,3 +23,12 @@ stack build
 base64 /dev/urandom -w 2 | stack exec liveuniq
 ```
 
+# License
+
+ISC.
+There's a catch though, the library this code depends on is GPL.
+This seems to be fine, as long as you take care when redistributing binaries.
+
+My personal comment on this is: stick to more free licenses than GPL.
+It saves so much trouble on these kinds of things.
+
