@@ -60,7 +60,7 @@ executable liveuniq
   -- other-extensions:
 
   -- Other library packages from which modules are imported.
-  build-depends:       base >=4.9 && <4.10, mtl >=2.2 && <2.3, containers >=0.5 && <0.6, ncurses >=0.2 && <0.3
+  build-depends:       base >=4.9 && <4.10, mtl >=2.2 && <2.3, containers >=0.5 && <0.6, ncurses >=0.2 && <0.3, clock >=0.7 && <0.8
 
   -- Directories containing source files.
   hs-source-dirs:      src

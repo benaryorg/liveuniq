@@ -4,6 +4,7 @@ import Control.Monad.IO.Class
 import Data.List
 import Data.Map.Strict (Map,empty,toList,insertWith)
 import Data.Ord (comparing,Down(..))
+import System.Clock
 import System.Timeout (timeout)
 
 import UI.NCurses
@@ -23,20 +24,26 @@ main = runCurses $ do
 	setEcho False
 	_ <- setCursorMode CursorInvisible
 	w <- defaultWindow
-	_ <- loop w newState
+	starttime <- liftIO $ getTime Monotonic
+	_ <- loop w starttime newState
 	return ()
 	where
 		format name value = (show value) ++ ": " ++ name
 		writeline n text = do
 			moveCursor n 0
 			drawString text
-		loop w state = do
+		loop w lastupdate state = do
 			state' <- liftIO $ eventloop state
-			(heigth,width) <- screenSize
-			updateWindow w $ do
-				mapM_ (uncurry writeline) $ zip [0..] $ map (take (fromInteger width-1) . uncurry format) $ minNBy (comparing $ Down . snd) (fromInteger $ heigth) $ toList state'
-			render
-			loop w state'
+			now <- liftIO $ getTime Monotonic
+			if toNanoSecs (diffTimeSpec lastupdate now) > 100000000 then
+				do
+					(heigth,width) <- screenSize
+					updateWindow w $ do
+						mapM_ (uncurry writeline) $ zip [0..] $ map (take (fromInteger width-1) . uncurry format) $ minNBy (comparing $ Down . snd) (fromInteger $ heigth) $ toList state'
+					render
+					loop w now state'
+			else
+				loop w lastupdate state'
 
 eventloop :: State -> IO State
 eventloop state = do
