@@ -21,8 +21,12 @@ And follow those steps:
 ```bash
 # build liveuniq
 stack build
+
 # get random two character strings and send them to liveuniq
 base64 /dev/urandom -w 2 | stack exec liveuniq
+
+# optionally install into your PATH (probably ~/.local/bin)
+stack install
 ```
 
 # License
