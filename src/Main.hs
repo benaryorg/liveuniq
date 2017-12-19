@@ -1,5 +1,4 @@
-#!/usr/bin/env stack
--- stack --resolver lts-9.18 --install-ghc runghc --package ncurses -- -Wno-tabs
+module Main where
 
 import Control.Monad.IO.Class
 import Control.Exception
