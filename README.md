@@ -29,6 +29,13 @@ base64 /dev/urandom -w 2 | stack exec liveuniq
 stack install
 ```
 
+# More Examples
+
+The [GitHub Repository](https://github.com/benaryorg/liveuniq/) has a
+[Wiki](https://github.com/benaryorg/liveuniq/wiki), which in turn has an [Example
+Page](https://github.com/benaryorg/liveuniq/wiki/Examples).
+I hope we can fill that one with examples soon.
+
 # License
 
 ISC.
