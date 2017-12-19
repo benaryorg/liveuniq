@@ -19,9 +19,9 @@ newState = empty
 main :: IO ()
 main = runCurses $ do
 	setEcho False
-	setCursorMode CursorInvisible
+	_ <- setCursorMode CursorInvisible
 	w <- defaultWindow
-	loop w newState
+	_ <- loop w newState
 	return ()
 	where
 		format name value = (show value) ++ ": " ++ name
@@ -42,7 +42,7 @@ eventloop state = do
 		maybeline <- timeout 100000 getLine
 		return $ update maybeline state
 	where
-		update maybeline state = case maybeline of
-			Just line -> insertWith (+) line 1 state
-			Nothing -> state
+		update maybeline state' = case maybeline of
+			Just line -> insertWith (+) line 1 state'
+			Nothing -> state'
 
