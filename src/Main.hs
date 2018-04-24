@@ -32,6 +32,7 @@ main = runCurses $ do
 		writeline n text = do
 			moveCursor n 0
 			drawString text
+			clearLine
 		loop w lastupdate state = do
 			state' <- liftIO $ eventloop state
 			now <- liftIO $ getTime Monotonic
